@@ -5,7 +5,7 @@ This repository contains my personal configuration files for a Wayland-based env
 - **Compositor**: Hyprland
 - **Status Bar**: Waybar
 - **Application Launcher**: Wofi
-- **Terminal Emulator**: Foot
+- **Terminal Emulator**: Kitty
 
 These configurations are managed and applied using [chezmoi](https://www.chezmoi.io/), facilitating synchronization and installation across multiple machines.
 
