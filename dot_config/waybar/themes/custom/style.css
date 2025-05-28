@@ -1,0 +1,219 @@
+@define-color bg0 #212121;
+/*@define-color bg1 #353535;*/
+/*@define-color bg1 rgba(33,33,33,0.8);*/
+@define-color bg1 #212121;
+@define-color fg0 #eeffff;
+@define-color yellow #ffcb6b;
+@define-color backgrounddark #353535;
+@define-color workspaceColor #25a1ff;
+
+* {
+  font-family: JetBrainsMono Nerd Font Propo;
+  font-size: 14px;
+  font-weight: 500;
+  min-height: 0;
+  border-color: @bg1;
+}
+
+#custom-appmenu {
+  background-color: @backgrounddark;
+  font-size: 16px;
+  color: @textcolor1;
+  border-radius: 15px;
+  padding: 10px 16px 10px 16px;
+  margin: 8px 4px 0px 8px;
+}
+
+#custom-appmenu:hover {
+  background-color: @bg1;
+  color: @textcolor1;
+}
+
+#taskbar {
+  background-color: @bg1;
+  padding: 0px 12px;
+  margin: 8px 4px 0px 4px;
+  border-radius: 18px;
+  font-weight: normal;
+  font-style: normal;
+  opacity: 0.8;
+}
+
+#taskbar button {
+  margin: 0;
+  padding: 0px 5px 0px 5px;
+}
+
+#taskbar.empty {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+window#waybar {
+  background-color: transparent;
+  color: @fg0;
+}
+
+#workspaces {
+  background-color: @bg1;
+  margin: 8px 4px 0px 4px;
+  padding: 0px 8px;
+  border-radius: 18px;
+  font-weight: normal;
+  font-style: normal;
+  opacity: 0.8;
+  font-size: 14px;
+  color: @fg0;
+}
+
+#workspaces button {
+  padding: 0px 6px;
+  margin: 4px 4px;
+  border-radius: 15px;
+  border: 0px;
+  color: @fg0;
+  background-color: @bg1;
+  transition: all 0.3s ease-in-out;
+  opacity: 0.4;
+}
+
+#workspaces button.active {
+  color: @fg0;
+  background-color: @workspaceColor;
+  border-radius: 15px;
+  min-width: 40px;
+  transition: all 0.3s ease-in-out;
+  opacity: 1;
+}
+
+#workspaces button:hover {
+  color: @fg0;
+  background-color: @bg1;
+  border-radius: 15px;
+  opacity: 0.7;
+}
+
+.custom-spotify {
+  margin: 8px 4px 0px 4px;
+  padding: 0px 8px;
+  background-color: @bg1;
+  color: @fg0;
+  border-radius: 15px;
+}
+
+#window {
+  background-color: @bg1;
+  border-radius: 18px;
+  padding: 0px 16px;
+  margin: 8px 4px 0px 4px;
+}
+
+window#waybar.empty #window {
+  background-color: transparent;
+}
+
+#tray {
+  background-color: @bg1;
+  border-radius: 18px;
+  padding: 0px 16px;
+  margin: 8px 4px 0px 4px;
+}
+
+#hw {
+  background-color: @bg1;
+  border-radius: 18px;
+  padding: 0px 16px;
+  margin: 8px 4px 0px 4px;
+}
+
+#cpu {
+  margin-right: 8px;
+}
+
+#memory {
+  margin-left: 8px;
+}
+
+#control {
+  background-color: @bg1;
+  border-radius: 18px;
+  padding: 0px 16px;
+  margin: 8px 4px 0px 4px;
+}
+
+#battery {
+  margin-right: 8px;
+}
+
+#network {
+  margin: 0px 8px;
+}
+
+#bluetooth {
+  margin: 0px 8px;
+}
+
+#pulseaudio {
+  margin: 0px 8px;
+}
+#backlight {
+  margin: 0px 8px;
+  margin-right: 16px;
+}
+#hyprland-language {
+}
+
+#pc {
+  background-color: @bg1;
+  border-radius: 18px;
+  padding: 0px 16px;
+  margin: 8px 4px 0px 4px;
+}
+
+#custom-notification {
+  margin: 0px 10px;
+}
+
+#custom-notification:hover {
+  color: @fg0;
+  background-color: @bg1;
+  border-radius: 15px;
+  opacity: 0.7;
+}
+
+#custom-exit {
+  margin: 0px 10px;
+}
+
+#custom-exit:hover {
+  color: @fg0;
+  background-color: @bg1;
+  border-radius: 15px;
+  opacity: 0.7;
+}
+
+#custom-system {
+  margin-left: 23px;
+  font-size: 20px;
+  font-weight: bold;
+  color: @iconcolor;
+}
+
+#disk,
+#memory,
+#cpu,
+#language {
+  margin: 0px;
+  padding: 0px;
+  font-size: 16px;
+  color: @iconcolor;
+}
+
+#clock {
+  background-color: @bg1;
+  border-radius: 18px;
+  padding: 0px 16px;
+  margin: 8px 8px 0px 4px;
+}
