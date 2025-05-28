@@ -43,3 +43,13 @@ To fetch updates:
 chezmoi update
 chezmoi apply
 ```
+
+🔄 **Updating dotfiles in the repository**  
+If you edited files directly in `~/.config` and want to reflect those changes in your dotfiles repository, run:
+
+```bash
+chezmoi add ~/.config/YOUR_FILE
+chezmoi cd
+git commit -m "Update YOUR_FILE"
+git push
+```
