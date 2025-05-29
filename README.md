@@ -26,6 +26,7 @@ chezmoi apply
 ### Editing Configurations
 
 ```bash
+chezmoi cd
 chezmoi edit ~/.config/hypr/hyprland.conf
 ```
 
