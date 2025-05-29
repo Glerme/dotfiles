@@ -29,6 +29,19 @@ chezmoi apply
 chezmoi cd
 chezmoi edit ~/.config/hypr/hyprland.conf
 ```
+or
+
+```bash
+chezmoi cd
+nvim dot_config/PATH_TO_FILE
+```
+
+or
+
+```bash
+chezmoi cd
+code dot_config/PATH_TO_FILE
+```
 
 After editing, apply the changes with:
 
