@@ -8,6 +8,7 @@
   "margin-right": 10,
   "height": 44,
   "modules-left": [
+    "custom/background_apps",
     "wlr/taskbar",
     "hyprland/workspaces",
     "custom/spotify"
