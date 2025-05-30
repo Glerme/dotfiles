@@ -6,7 +6,7 @@
   "margin-top": 10,
   "margin-left": 10,
   "margin-right": 10,
-  "height": 28,
+  "height": 44,
   "modules-left": [
     "wlr/taskbar",
     "hyprland/workspaces",
@@ -18,7 +18,9 @@
   "modules-right": [
     "hyprland/language",
     "pulseaudio",
+    "custom/separator",
     "bluetooth",
+    "network",
     "custom/separator",
     "clock",
     "custom/spacer",
@@ -28,13 +30,12 @@
   ],
   "wlr/taskbar": {
     "format": "{icon}",
-    "icon-size": 22,
+    "icon-size": 18,
     "tooltip-format": "{title}",
     "on-click": "activate",
     "on-click-middle": "close",
     "ignore-list": [
-      "Alacritty",
-      "kitty"
+      "Alacritty"
     ],
     "app_ids-mapping": {
       "firefoxdeveloperedition": "firefox-developer-edition"
@@ -55,15 +56,19 @@
     "tooltip": false
   },
   "hyprland/window": {
-    "format": "{}",
-    "max-length": 35,
+    "max-length": 50,
     "rewrite": {
-      "": "Harsh"
+      "(.*) - Brave": "$1",
+      "(.*) - Chrome": "$1",
+      "(.*) - Brave Search": "$1",
+      "(.*) - Outlook": "$1",
+      "(.*) Microsoft Teams": "$1"
     },
     "separate-outputs": true
   },
   "hyprland/workspaces": {
     "active-only": false,
+    "all-outputs": true,
     "format": "{icon}",
     "on-click": "activate",
     "on-scroll-up": "hyprctl dispatch workspace r-1",
@@ -93,10 +98,24 @@
     "on-scroll-down": "playerctl previous"
   },
   "clock": {
-    "format": "<span color='#89b4fa'>󰥔</span> <span color='#cdd6f4'>{:%H:%M - %a %d %b}</span>",
+    "format": "<span color='#89b4fa'>󰥔</span>  <span color='#cdd6f4'>{:%H:%M - %a %d %b}</span>",
     "tooltip": false,
     "timezone": "America/Sao_Paulo",
-    "on-click": "gnome-calendar"
+    "on-click": "gnome-calendar",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "calendar": {
+      "mode": "year",
+      "mode-mon-col": 3,
+      "weeks-pos": "right",
+      "on-scroll": 1,
+      "format": {
+        "months": "<span color='#ffead3'><b>{}</b></span>",
+        "days": "<span color='#ecc6d9'><b>{}</b></span>",
+        "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+        "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+        "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+      }
+    }
   },
   "bluetooth": {
     "format": "<span color='#82aaff'></span> {status}",
@@ -105,10 +124,12 @@
     "on-click": "blueman-manager"
   },
   "pulseaudio": {
-    "format": "<span color='#a6e3a1'>{icon}</span> <span color='#cdd6f4'>{volume}%</span>",
+    "format": "<span color='#a6e3a1'>{icon}</span>  <span color='#cdd6f4'>{volume}%</span>",
     "format-bluetooth": "<span color='#a6e3a1'>{icon}</span>  <span color='#cdd6f4'>{volume}%</span>",
     "tooltip": false,
     "format-muted": "<span color='#f38ba8'>󰝟</span>",
+    "tooltip-format": "{device_name} {status} {volume}%",
+    "return-type": "json",
     "on-click": "pavucontrol",
     "on-scroll-up": "wpctl set-volume @DEFAULT_SINK@ 10%+",
     "on-scroll-down": "wpctl set-volume @DEFAULT_SINK@ 10%-",
@@ -127,7 +148,9 @@
     }
   },
   "hyprland/language": {
-    "format": "<span color='#f9e2af'>󰌌</span> <span color='#cdd6f4'>{short}</span>",
+    "format": "<span color='#f9e2af'>󰌌</span>  <span color='#cdd6f4'>{}</span>",
+    "format-en": "us",
+    "format-pt": "br",
     "min-length": 5
   },
   "custom/notification": {
@@ -155,5 +178,15 @@
     "on-click": "~/.config/hypr/scripts/wlogout.sh",
     "on-click-right": "hyprlock",
     "tooltip-format": "Left: Power menu\nRight: Lock screen"
+  },
+  "network": {
+    "format": "{ifname}",
+    "format-ethernet": "<span color='#89ddff'>󰈀</span>",
+    "format-wifi": "<span color='#89ddff'>{icon}</span>",
+    "format-disconnected": "<span color='#89ddff'>󰤭</span>",
+    "tooltip-format-wifi": "  {ifname} @ {essid}\n{bandwidthDownBytes:=}\nIP: {ipaddr}\nStrength: {signalStrength}%\nFreq: {frequency}MHz\nUp: {bandwidthUpBits} Down: {bandwidthDownBits}",
+    "tooltip-format-ethernet": " {ifname}\n{bandwidthDownBytes:=}\nIP: {ipaddr}\nUp: {bandwidthUpBits} Down: {bandwidthDownBits}",
+    "tooltip-format-disconnected": "<span color='#1e1e2e'>{icon}</span>Disconnected",
+    "on-click": "~/.config/hypr/scripts/networkmanager.sh"
   }
 }
