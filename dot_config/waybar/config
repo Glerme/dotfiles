@@ -8,7 +8,6 @@
   "margin-right": 10,
   "height": 44,
   "modules-left": [
-    "custom/background_apps",
     "wlr/taskbar",
     "hyprland/workspaces",
     "custom/spotify"
@@ -183,7 +182,7 @@
   "network": {
     "format": "{ifname}",
     "format-ethernet": "<span color='#89ddff'>󰈀</span>",
-    "format-wifi": "<span color='#89ddff'>{icon}</span>",
+    "format-wifi": "<span color='#89ddff'></span> ",
     "format-disconnected": "<span color='#89ddff'>󰤭</span>",
     "tooltip-format-wifi": "  {ifname} @ {essid}\n{bandwidthDownBytes:=}\nIP: {ipaddr}\nStrength: {signalStrength}%\nFreq: {frequency}MHz\nUp: {bandwidthUpBits} Down: {bandwidthDownBits}",
     "tooltip-format-ethernet": " {ifname}\n{bandwidthDownBytes:=}\nIP: {ipaddr}\nUp: {bandwidthUpBits} Down: {bandwidthDownBits}",
