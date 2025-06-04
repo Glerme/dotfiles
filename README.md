@@ -9,27 +9,49 @@ This repository contains my personal configuration files for a Wayland-based env
 
 These configurations are managed and applied using [chezmoi](https://www.chezmoi.io/), facilitating synchronization and installation across multiple machines.
 
+---
+
 ## Usage
 
 ### Prerequisites
 
-- [chezmoi](https://www.chezmoi.io/) installed
+- Arch-based Linux distribution
 - SSH key configured for GitHub access (recommended)
 
-### Install dotfiles on a new machine
+---
+
+### Install everything on a new machine
+
+Clone the repository and run the setup script to install packages and apply all configurations automatically:
 
 ```bash
-chezmoi init git@github.com:Glerme/dotfiles.git
-chezmoi apply
+git clone git@github.com:Glerme/dotfiles.git
+cd dotfiles
+chmod +x install.sh
+./install.sh
 ```
 
+> This will:
+>
+> - Install all required official and AUR packages
+> - Install `yay` (AUR helper) if not present
+> - Initialize `chezmoi` with this repository (if needed)
+> - Apply dotfiles with `chezmoi apply`
+> - Enable and start Docker
+> - Change the default shell to `zsh`
+
+---
+
 ### Editing Configurations
+
+Use chezmoi to safely edit and manage your dotfiles:
 
 ```bash
 chezmoi cd
 chezmoi edit ~/.config/hypr/hyprland.conf
 ```
-or
+
+Or open files directly:
 
 ```bash
 chezmoi cd
@@ -49,17 +71,22 @@ After editing, apply the changes with:
 chezmoi apply
 ```
 
-### Update Dotfiles locally
+---
 
-To fetch updates:
+### Updating Dotfiles locally
 
-```batch
+Fetch updates from the remote repository and apply them:
+
+```bash
 chezmoi update
 chezmoi apply
 ```
 
-🔄 **Updating dotfiles in the repository**  
-If you edited files directly in `~/.config` and want to reflect those changes in your dotfiles repository, run:
+---
+
+### Sync local changes back to the repository
+
+If you edit files directly in `~/.config` and want to track those changes in your dotfiles repo:
 
 ```bash
 chezmoi add ~/.config/YOUR_FILE
