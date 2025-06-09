@@ -6,6 +6,18 @@ LAST_FILE="$HOME/.cache/last_wallpaper.txt"
 TRANSITION="any"
 DURATION="0.5"
 
+# Garante que o daemon esteja ativo
+if ! pgrep -x swww-daemon >/dev/null 2>&1; then
+  swww-daemon &
+fi
+
+# Espera o socket aparecer (até 1s)
+for i in {1..10}; do
+  [ -S "$XDG_RUNTIME_DIR/swww.sock" ] && break
+  sleep 0.1
+done
+
+
 # Garante que diretórios de cache existam
 mkdir -p "$(dirname "$CACHE_FILE")"
 
@@ -29,19 +41,20 @@ LAST_WP=""
 [ -f "$LAST_FILE" ] && LAST_WP=$(<"$LAST_FILE")
 
 # Escolhe um novo diferente do último
-ATTEMPTS=0
-MAX_ATTEMPTS=10
 RANDOM_WP=""
+if [ ${#WALLPAPERS[@]} -eq 1 ]; then
+  RANDOM_WP="${WALLPAPERS[0]}"
+else
+  ATTEMPTS=0
+  MAX_ATTEMPTS=10
+  while [ $ATTEMPTS -lt $MAX_ATTEMPTS ]; do
+    RANDOM_WP=$(shuf -n 1 "$CACHE_FILE")
+    [ "$RANDOM_WP" != "$LAST_WP" ] && break
+    ((ATTEMPTS++))
+  done
+fi
 
-while [ $ATTEMPTS -lt $MAX_ATTEMPTS ]; do
-  RANDOM_WP=$(shuf -n 1 "$CACHE_FILE")
-  if [ "$RANDOM_WP" != "$LAST_WP" ]; then
-    break
-  fi
-  ((ATTEMPTS++))
-done
-
-# Se ainda for igual (lista com 1 item), tudo bem
+# Salva o novo wallpaper como último usado
 echo "$RANDOM_WP" > "$LAST_FILE"
 
 # Aplica o wallpaper
