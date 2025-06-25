@@ -28,6 +28,3 @@ swww img "$CHOSEN" --transition-type grow --transition-duration 0.7
 # Salva como último
 echo "$CHOSEN" > ~/.cache/last_wallpaper.txt
 echo "$(date '+%F %T') - $CHOSEN" >> ~/.cache/wallpaper_history.log
-
-# Notifica
-notify-send -i "$CHOSEN" "🖼️ Wallpaper aplicado" "$(basename "$CHOSEN")"

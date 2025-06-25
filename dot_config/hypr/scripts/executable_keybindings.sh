@@ -1,38 +1,41 @@
 #!/bin/bash
-#  _              _     _           _ _
-# | | _____ _   _| |__ (_)_ __   __| (_)_ __   __ _ ___
-# | |/ / _ \ | | | '_ \| | '_ \ / _` | | '_ \ / _` / __|
-# |   <  __/ |_| | |_) | | | | | (_| | | | | | (_| \__ \
-# |_|\_\___|\__, |_.__/|_|_| |_|\__,_|_|_| |_|\__, |___/
-#           |___/                             |___/
-#
-# -----------------------------------------------------
-# Get keybindings location based on variation
-# -----------------------------------------------------
-config_file=$(~/.config/hypr/conf/keybinding.conf)
-config_file=${config_file//source = ~//home/$USER}
+# Hyprland keybindings viewer with pretty output
 
-# -----------------------------------------------------
-# Path to keybindings config file
-# -----------------------------------------------------
-echo "Reading from: $config_file"
+config_file="$HOME/.config/hypr/conf/keybinding.conf"
 
-keybinds=$(awk -F'[=#]' '
-    $1 ~ /^bind/ {
-        # Replace the string "$mainMod" with "SUPER" (for the super key)
-        gsub(/\$mainMod/, "SUPER", $0)
+if [ ! -f "$config_file" ]; then
+  echo "Arquivo de configuração não encontrado: $config_file"
+  exit 1
+fi
 
-        # Remove "bind" and extra spaces, if any, at the beginning of the line
-        gsub(/^bind[[:space:]]*=+[[:space:]]*/, "", $0)
+# Cabeçalho com separadores
+header="Atalho               │ Comando"
+divider="──────────────────────┼────────────────────────────────────"
 
-        # Split the keybinding part (e.g., "Mod1,Return") using a comma
-        split($1, kbarr, ",")
-
-        # Format the keybinding and associated command and prepare for output:
-        # Concatenate the two keybinding keys (e.g., "Mod1" + "Return") and append the command
-        print kbarr[1] "  + " kbarr[2] "\r" $2
-    }
+# Extrair e formatar os keybinds
+keybinds=$(awk '
+  BEGIN { OFS = "" }
+  /^\s*bind/ {
+    gsub(/\$mainMod/, "SUPER", $0)
+    sub(/^bind\s*=\s*/, "")
+    split($0, arr, ",")
+    key=arr[1]
+    gsub(/^[ \t]+|[ \t]+$/, "", key)
+    cmd=arr[3]
+    for (i=4; i<=length(arr); i++) cmd=cmd","arr[i]
+    gsub(/^[ \t]+|[ \t]+$/, "", cmd)
+    printf("%-20s │ %s\n", key, cmd)
+  }
 ' "$config_file")
 
-sleep 0.2
-rofi -dmenu -i -markup -eh 2 -replace -p "Keybinds" -config ~/.config/rofi/config-compact.rasi <<<"$keybinds"
+if [ -z "$keybinds" ]; then
+  notify-send "Keybinds" "Nenhum atalho encontrado em $config_file"
+  exit 0
+fi
+
+# Concatenar tudo e exibir no rofi
+{
+  echo "$header"
+  echo "$divider"
+  echo "$keybinds"
+} | rofi -dmenu -i -p "Keybinds" -config ~/.config/rofi/config-compact.rasi

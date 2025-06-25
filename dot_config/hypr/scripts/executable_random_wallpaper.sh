@@ -59,6 +59,3 @@ echo "$RANDOM_WP" > "$LAST_FILE"
 
 # Aplica o wallpaper
 swww img "$RANDOM_WP" --transition-type "$TRANSITION" --transition-duration "$DURATION"
-
-# Notifica
-notify-send -i "$RANDOM_WP" "Wallpaper trocado" "$(basename "$RANDOM_WP")"
