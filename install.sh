@@ -20,6 +20,8 @@ PACMAN_PACKAGES=(
   fzf
   git
   gtk4
+  gvfs
+  gvfs-mtp
   htop
   hyprland
   hyprpicker
@@ -45,6 +47,7 @@ PACMAN_PACKAGES=(
   scrcpy
   starship
   swww
+  thunar-volman
   ttf-fira-code
   ttf-nerd-fonts-symbols
   vim
