@@ -19,8 +19,7 @@
     "hyprland/language",
     "pulseaudio",
     "custom/separator",
-    "bluetooth",
-    "network",
+    "tray",
     "custom/separator",
     "clock",
     "custom/spacer",
@@ -188,5 +187,12 @@
     "tooltip-format-ethernet": " {ifname}\n{bandwidthDownBytes:=}\nIP: {ipaddr}\nUp: {bandwidthUpBits} Down: {bandwidthDownBits}",
     "tooltip-format-disconnected": "<span color='#1e1e2e'>{icon}</span>Disconnected",
     "on-click": "~/.config/hypr/scripts/networkmanager.sh"
+  },
+  "tray": {
+    "icon-size": 18,
+    "spacing": 12,
+    "icons": {
+      "blueman": "bluetooth"
+    }
   }
 }

@@ -75,7 +75,8 @@ window#waybar.empty #window {
 #custom-media,
 #network,
 #custom-exit,
-#custom-separator {
+#custom-separator,
+#tray {
   background: #1e1e2e;
   opacity: 1;
   padding: 1.5px 7px 1.5px 7px;
@@ -106,10 +107,15 @@ window#waybar.empty #window {
   margin-left: 0px;
 }
 
-#network {
+#tray {
   margin-right: 0px;
   margin-left: 0px;
   border-radius: 0px;
+}
+
+#tray-item-discord {
+  color: #f9e2af;
+  opacity: 0.1;
 }
 
 #custom-notification {
